@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        block csslink
+        script(src="/javascripts/jquery-1.10.2.min.js")
+        block scripts
+    body
+        header
+            #logo #{logo}
+            each val in menus
+                .menu=val
+        navi
+            each val in navis
+                li=val
+        block content
+        footer

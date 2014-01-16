@@ -1,0 +1,51 @@
+@banner-bg: #000000;
+@banner-font: #EEEEEE;
+@hover-bg: #777777;
+@navi-bg:#000000;
+
+@header-height:56px;
+
+header {
+  width:100%;
+  height:@header-height;
+  background-color: @banner-bg;
+  opacity: 0.7;
+  text-align: center;
+  position:fixed;
+  color:@banner-font;
+
+  #logo {
+    cursor: pointer;
+    padding:0px 18px 0px 18px;
+    height:@header-height;
+    line-height:@header-height;
+  }
+
+  div {
+    display:inline-block;
+    height:@header-height;
+    line-height:@header-height;
+    font-size:20px;
+    font-weight:bolder;
+    padding:0px 10px 0px 10px;
+
+    .current {
+      background-color: @hover-bg;
+    }
+  }
+
+  .menu:hover {
+    background-color: @hover-bg;
+  }
+
+}
+
+navi {
+  background-color: @navi-bg;
+  position: fixed;
+  top:@header-height;
+  height:100%;
+  width:24%;
+  opacity: 0.7;
+  color:#ffffff;
+}
