@@ -1,19 +1,26 @@
 doctype html
-html
+html(lang='zh-cn')
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        link(rel='stylesheet', href='/stylesheets/reset.css')
-        block csslink
-        script(src="/javascripts/jquery-1.10.2.min.js")
-        block scripts
+        link(rel='stylesheet',href='/bootstrap/css/bootstrap.min.css')
+        block linkcss
+        meta(name='viewport',content='width=device-width,initial-scale=1.0')
     body
-        header
-            #logo #{logo}
-            each val in menus
-                .menu=val
-        navi
-            each val in navis
-                li=val
+        header.navbar.navbar-inverse.navbar-fixed-top(role='banner')
+            .container
+                .navbar-header
+                    button.navbar-toggle.collasped(type='button',data-toggle='collapse',data-target='.id-navbar-collapse')
+                        span.sr-only 菜单
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='#') 信龙
+                .collapse.navbar-collapse.id-navbar-collapse(role='navigation',style='height: 1px;')
+                    ul.nav.navbar-nav
+                        each val in menus
+                            li
+                                a(href='#')= val
         block content
-        footer
+        script(src='/javascripts/jquery-1.10.2.min.js')
+        script(src='/bootstrap/js/bootstrap.min.js')
+        block jsfile
