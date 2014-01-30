@@ -5,10 +5,31 @@ html
         link(rel='stylesheet',href='/bootstrap/css/bootstrap.min.css')
         link(rel='stylesheet',href='/stylesheets/register.css')
         meta(name='viewport',content='width=device-width,initial-scale=1.0')
-        script(src='/javascripts/jquery-1.10.2.min.js')
-        script(src='/bootstrap/js/bootstrap.min.js')
     body
         .container
+            h2.col-sm-offset-3 成为信龙用户系统用户
             .form-horizontal
+                .form-group.has-success
+                    label.col-sm-4.control-label 邮箱
+                    .col-sm-3
+                        input.form-control(id='f_email',type='email')
                 .form-group
-                    label.col-sm-2.control-label 邮箱
+                    label.col-sm-4.control-label 昵称
+                    .col-sm-3
+                        input.form-control(id='f_nickname',type='text')
+                .form-group
+                    label.col-sm-4.control-label 密码
+                    .col-sm-3
+                        input.form-control(id='f_password',type='password')
+                .form-group.has-error
+                    label.col-sm-4.control-label 确认密码
+                    .col-sm-3
+                        input.form-control(id='f_repwd',type='password')
+                .form-group
+                    .col-sm-2.col-sm-offset-4
+                        button.btn.btn-default.pull-right(type='reset') 清空
+                    .col-sm-2
+                        button.btn.btn-primary(type='submit') 注册
+        script(src='/javascripts/jquery-1.10.2.min.js')
+        script(src='/bootstrap/js/bootstrap.min.js')
+        script(src='/javascripts/bootstrap3-validation.js')
