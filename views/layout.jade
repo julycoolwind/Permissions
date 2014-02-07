@@ -19,8 +19,21 @@ html(lang='zh-cn')
                 .collapse.navbar-collapse.id-navbar-collapse(role='navigation',style='height: 1px;')
                     ul.nav.navbar-nav
                         each val in menus
-                            li
-                                a(href='#')= val
+                            if val.url
+                                li
+                                    a(href='#{val.url}')= val.name
+                            else
+                                li.dropdown
+                                    a.dropdown-toggle(href='javascript:void(0);',data-toggle='dropdown')= val.name
+                                        b.caret
+                                    ul.dropdown-menu
+                                        each nav in val.children
+                                            li
+                                                a(href='#{nav.url}')= nav.name
+
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='#') 登出
         block content
         script(src='/javascripts/jquery-1.10.2.min.js')
         script(src='/bootstrap/js/bootstrap.min.js')
