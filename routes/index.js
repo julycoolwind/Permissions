@@ -1,6 +1,4 @@
-/*
- * GET home page.
- */
+// mock data from back-end
 
 var menus = [
     {
@@ -51,6 +49,11 @@ var menus = [
     },
 ]
 
+/**
+ * index
+ * @param req
+ * @param res
+ */
 exports.index = function (req, res) {
     res.render('index', { title: '用户系统范例', logo: 'MainPage', 'menus': menus});
 };
