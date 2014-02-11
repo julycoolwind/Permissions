@@ -6,6 +6,7 @@
     "express": "3.4.7",
     "jade": "*",
     "less-middleware": "*",
-    "mongojs": "~0.10.0"
+    "mongojs": "~0.10.0",
+    "log4js": "~0.6.9"
   }
 }

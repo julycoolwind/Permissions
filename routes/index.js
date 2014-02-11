@@ -1,4 +1,4 @@
-// mock data from back-end
+// mock data
 
 var menus = [
     {
@@ -54,6 +54,10 @@ var menus = [
  * @param req
  * @param res
  */
+var logger = require("log4js").getLogger("routes.index");
+
 exports.index = function (req, res) {
     res.render('index', { title: '用户系统范例', logo: 'MainPage', 'menus': menus});
+    logger.debug("logger debug");
+    logger.info("logger info");
 };
