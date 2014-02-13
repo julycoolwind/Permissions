@@ -1,4 +1,3 @@
-var assert = require('assert');
 var should = require('should');
 var user = require('../src/DBAccess/user');
 

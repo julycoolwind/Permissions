@@ -1,5 +1,5 @@
 .idea/*
 *.iml
-src/node_modules/*
+node_modules/*
 src/public/stylesheets/*.css
 src/log/*
