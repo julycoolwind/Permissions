@@ -59,3 +59,31 @@ describe("userBO",function() {
         });
     });
 });
+
+describe("invitationCodeBO",function() {
+    describe("createInvitationCode",function() {
+        it("根据传入邮箱地址email与数字x创建x个邀请码",function() {
+
+        });
+    });
+    describe("findInvitationCodeByEmail",function() {
+        it("根据邮箱地址查询邀请码，返回array",function() {
+
+        });
+    });
+    describe("setInvitationUsed",function() {
+        it("设置邀请码状态为已使用",function() {
+
+        });
+    });
+    describe("setInvitationLapsed",function() {
+        it("设置邀请码状态为已失效",function() {
+
+        });
+    });
+    describe("setAllInvitationLapsed",function() {
+        it("设置未使用的邀请码为已失效",function() {
+
+        });
+    });
+});

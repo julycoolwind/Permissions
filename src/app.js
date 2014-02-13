@@ -44,3 +44,5 @@ app.get("/register",userControl.register);
 http.createServer(app).listen(app.get("port"), function(){
   logger.debug("Express server listening on port " + app.get("port"));
 });
+
+module.exports = app;

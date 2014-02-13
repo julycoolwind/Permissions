@@ -93,3 +93,21 @@ describe("DBAccess.user", function () {
         });
     });
 });
+
+describe("DBAccess.invitationCode",function () {
+    describe("add",function() {
+        it("创建新的邀请码",function() {
+
+        });
+    });
+    describe("update",function() {
+        it("修改邀请码状态",function() {
+
+        });
+    });
+    describe("findOneByCode",function() {
+        it("通过code查询邀请码状态",function() {
+
+        });
+    });
+});
