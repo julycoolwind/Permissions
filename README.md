@@ -12,3 +12,6 @@ express(jade,less) + bootstrap3.* + mocha(should) + mongojs(mongodb)
     #npm install -g mocha
 
     $mocha
+
+## 测试覆盖率,持续集成
+    //TODO
