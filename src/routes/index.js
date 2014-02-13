@@ -30,7 +30,7 @@ exports.index = function (req, res) {
             }
         });
     }
-    res.render('index', { 'title': '用户系统范例', 'logo': 'MainPage', 'menus':menus});
+    res.render("index", { "title": "用户系统范例", "logo": "MainPage", "menus":menus});
     res.cookie("nickname","Administrator",{maxAge:1000*60});
     res.cookie("identifier","001",{maxAge:1000*60});
     res.cookie("token","1",{maxAge:1000*60});

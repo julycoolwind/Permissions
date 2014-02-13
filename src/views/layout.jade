@@ -1,42 +1,42 @@
 doctype html
-html(lang='zh-cn')
+html(lang="zh-cn")
     head
         title= title
-        link(rel='stylesheet',href='/bootstrap/css/bootstrap.min.css')
-        link(rel='stylesheet',href='/stylesheets/layout.css')
+        link(rel="stylesheet",href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet",href="/stylesheets/layout.css")
         block linkcss
-        meta(name='viewport',content='width=device-width,initial-scale=1.0')
+        meta(name="viewport",content="width=device-width,initial-scale=1.0")
     body
-        header.navbar.navbar-inverse.navbar-fixed-top(role='banner')
+        header.navbar.navbar-inverse.navbar-fixed-top(role="banner")
             .container
                 .navbar-header
-                    button.navbar-toggle.collasped(type='button',data-toggle='collapse',data-target='.id-navbar-collapse')
+                    button.navbar-toggle.collasped(type="button",data-toggle="collapse",data-target=".id-navbar-collapse")
                         span.sr-only 菜单
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href='#') 信龙
-                .collapse.navbar-collapse.id-navbar-collapse(role='navigation',style='height: 1px;')
+                    a.navbar-brand(href="#") 信龙
+                .collapse.navbar-collapse.id-navbar-collapse(role="navigation",style="height: 1px;")
                     ul.nav.navbar-nav
                         if menus
                             each val in menus
                                 if val.url
                                     li
-                                        a(href='#{val.url}')= val.name
+                                        a(href="#{val.url}")= val.name
                                 else
                                     li.dropdown
-                                        a.dropdown-toggle(href='javascript:void(0);',data-toggle='dropdown')= val.name
+                                        a.dropdown-toggle(href="javascript:void(0);",data-toggle="dropdown")= val.name
                                             b.caret
                                         ul.dropdown-menu
                                             each nav in val.children
                                                 li
-                                                    a(href='#{nav.url}')= nav.name
+                                                    a(href="#{nav.url}")= nav.name
                     ul.nav.navbar-nav.navbar-right
                         li
-                            a(href='signIn') 登录
+                            a(href="signIn") 登录
                         li
-                            a(href='register') 注册
+                            a(href="register") 注册
         block content
-        script(src='/javascripts/jquery-1.10.2.min.js')
-        script(src='/bootstrap/js/bootstrap.min.js')
+        script(src="/javascripts/jquery-1.10.2.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
         block jsfile
