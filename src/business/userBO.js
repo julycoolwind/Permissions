@@ -5,7 +5,7 @@ var user = require("../DBAccess/user");
  * @param nickname
  * @param identifier
  * @param token
- * @param callback(status) 0-强制输入口令；1-登录成功；2-其他设备cookies登录；3-其他设备密码登录
+ * @param callback(status) 0-强制密码登录；1-登录成功；2-其他设备cookies登录；3-其他设备密码登录
  */
 exports.validateCookies = function (nickname, identifier, token, callback) {
     user.findOneByNickname(nickname, function (found, user) {
@@ -14,10 +14,10 @@ exports.validateCookies = function (nickname, identifier, token, callback) {
                 callback(0);
             } else if (user.identifier == identifier && user.token == token) {
                 callback(1);
-            } else if (user.token != token) {
-                callback(2);
-            } else {
+            } else if (user.identifier != identifier) {
                 callback(3);
+            } else {
+                callback(2);
             }
         } else {
             callback(0);
