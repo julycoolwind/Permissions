@@ -1,4 +1,5 @@
 .idea/*
 *.iml
 node_modules/*
-public/stylesheets/*.css
+src/public/stylesheets/*.css
+src/log/*
