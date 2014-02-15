@@ -13,5 +13,5 @@ express(jade,less) + bootstrap3.* + mocha(should) + mongojs(mongodb)
 
     $mocha
 
-## 测试覆盖率,持续集成
+## 测试覆盖率
     //TODO

@@ -38,7 +38,7 @@ if ("development" == app.get("env")) {
 
 app.get("/", routes.index);
 app.get("/index",routes.index);
-app.get("/signIn",userControl.signIn);
+app.get("/login",userControl.login);
 app.get("/register",userControl.register);
 
 http.createServer(app).listen(app.get("port"), function(){

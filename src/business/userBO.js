@@ -11,13 +11,13 @@ exports.validateCookies = function (nickname, identifier, token, callback) {
     user.findOneByNickname(nickname, function (found, user) {
         if (found && user) {
             if (!user.identifier) {
-                callback(0);
+                callback(0,null);
             } else if (user.identifier == identifier && user.token == token) {
-                callback(1);
-            } else if (user.identifier != identifier) {
-                callback(3);
+                callback(1,user);
+            } else if (user.identifier == identifier) {
+                callback(2,null);
             } else {
-                callback(2);
+                callback(3,null);
             }
         } else {
             callback(0);
@@ -33,23 +33,23 @@ exports.validateCookies = function (nickname, identifier, token, callback) {
  * @param pwd
  * @param callback(status) 0-密码错误；1-登录成功；2-用户名不存在
  */
-exports.validatePwd = function (nickname, email, pwd, callback) {
-    user.findOneByEmail(email, function (emailFound, emailUser) {
-        user.findOneByNickname(nickname, function (nicknameFound, nicknameUser) {
+exports.validatePwd = function (mark, pwd, callback) {
+    user.findOneByEmail(mark, function (emailFound, emailUser) {
+        user.findOneByNickname(mark, function (nicknameFound, nicknameUser) {
             if (emailFound) {
                 if(pwd == emailUser.pwd) {
-                    callback(1);
+                    callback(1,emailUser);
                 } else {
-                    callback(0);
+                    callback(0,null);
                 }
             } else if (nicknameFound) {
                 if(pwd == nicknameUser.pwd) {
-                    callback(1);
+                    callback(1,nicknameUser);
                 } else {
-                    callback(0);
+                    callback(0,null);
                 }
             } else {
-                callback(2);
+                callback(2,null);
             }
         });
     });

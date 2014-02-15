@@ -111,3 +111,30 @@ describe("DBAccess.invitationCode",function () {
         });
     });
 });
+
+describe("DBAccess.organization",function() {
+    describe("add",function() {
+        it("创建新的组织",function() {
+
+        });
+    });
+    describe("update",function() {
+        it("根据组织的ID更新组织其他属性",function() {
+
+        });
+    });
+    describe("safeRemove",function() {
+        it("安全删除组织与职位，只允许删除无子节点，无关联用户的组织",function() {
+
+        });
+    });
+    describe("forceRemove",function() {
+        it("删除组织与该组织下的子节点，包括所有职位，角色",function() {
+
+        });
+    });
+});
+
+describe("DBAccess.post",function() {
+
+})

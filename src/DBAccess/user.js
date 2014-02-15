@@ -71,10 +71,10 @@ exports.findOneByNickname = function(nickname,callback) {
             logger.error("查询用户数据失败.位置:DBAccess/user.findOneByNickname;错误信息:"+err);
         } else if(user == null){
             callback(false,null);
-            logger.info("查询用户数据成功:未找到 user : nickname = "+user.nickname);
+            logger.info("查询用户数据成功:未找到 user : nickname = "+nickname);
         } else {
             callback(true,user);
-            logger.info("查询用户数据成功: user : "+user.nickname);
+            logger.info("查询用户数据成功: user : "+nickname);
         }
     });
 };
