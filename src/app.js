@@ -40,6 +40,8 @@ app.get("/", routes.index);
 app.get("/index",routes.index);
 app.get("/login",userControl.login);
 app.get("/register",userControl.register);
+app.post("/signIn",userControl.signIn);
+//app.post("/signUp",userControl.signUp)
 
 http.createServer(app).listen(app.get("port"), function(){
   logger.debug("Express server listening on port " + app.get("port"));

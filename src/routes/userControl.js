@@ -9,18 +9,32 @@ exports.register = function(req, res) {
 };
 
 exports.signIn = function(req,res) {
-    var signInMark = req.params.signInMark;
-    var pwd = req.params.pwd;
-    var saveStatus = req.params.isSave;
+    var signInMark = req.body.signInMark;
+    var pwd = req.body.pwd;
+    var saveStatus = req.body.saveStates;
     userBO.validatePwd(signInMark,pwd,function(status,user) {
         switch(status) {
             case 0,2:
                 res.json({"status":status});
                 break;
             case 1:
-                req.session.setAttribute("user",user);
-                res.redirect("/index",{});
+                req.session.user = user;
+                if(saveStatus) {
+                    var maxAge = 60000*60*24*30;
+                    res.cookie("identifier",user.identifier,{"maxAge":maxAge});
+                    res.cookie("nickname",user.nickname,{"maxAge":maxAge});
+                    res.cookie("token",user.token,{"maxAge":maxAge});
+                } else {
+                    res.clearCookie("nickname");
+                    res.clearCookie("token");
+                    res.clearCookie("identifier");
+                }
+                res.redirect("/index");
                 break;
         }
     });
+};
+
+exports.singUp = function(req,res) {
+
 };

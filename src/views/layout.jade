@@ -32,10 +32,14 @@ html(lang="zh-cn")
                                                 li
                                                     a(href="#{nav.url}")= nav.name
                     ul.nav.navbar-nav.navbar-right
-                        li
-                            a(href="login") 登录
-                        li
-                            a(href="register") 注册
+                        if nickname
+                            li 欢迎，
+                                a(href="")= nickname
+                        else
+                            li
+                                a(href="login") 登录
+                            li
+                                a(href="register") 注册
         block content
         script(src="/javascripts/lib/jquery-1.10.2.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
