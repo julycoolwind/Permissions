@@ -33,14 +33,16 @@ html(lang="zh-cn")
                                                     a(href="#{nav.url}")= nav.name
                     ul.nav.navbar-nav.navbar-right
                         if nickname
-                            li 欢迎，
-                                a(href="")= nickname
+                            li
+                                a(href="") 欢迎，#{nickname}
+                            li
+                                a(href="signout") 退出
                         else
                             li
                                 a(href="login") 登录
                             li
                                 a(href="register") 注册
         block content
-        script(src="/javascripts/lib/jquery-1.10.2.min.js")
+        script(src="/javascripts/lib/jquery-1.11.0.js")
         script(src="/bootstrap/js/bootstrap.min.js")
         block jsfile

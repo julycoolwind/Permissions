@@ -10,7 +10,6 @@ exports.checkLoginStatus = function(req,res,callback) {
     var identifier  = req.cookies.identifier;
     var token = req.cookies.token;
     if(nickname && identifier && token) {
-
         userBO.validateCookies(nickname,identifier,token,function(status,user) {
             if(status == 1) {
                 callback(1,user);

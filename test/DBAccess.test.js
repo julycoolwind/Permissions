@@ -112,6 +112,7 @@ describe("DBAccess.invitationCode",function () {
     });
 });
 
+//TODO
 describe("DBAccess.organization",function() {
     describe("add",function() {
         it("创建新的组织",function() {
@@ -135,6 +136,7 @@ describe("DBAccess.organization",function() {
     });
 });
 
+//TODO
 describe("DBAccess.post",function() {
 
-})
+});

@@ -28,8 +28,7 @@ exports.validateCookies = function (nickname, identifier, token, callback) {
 
 /**
  * 通过密码校验登录
- * @param nickname
- * @param email
+ * @param mark
  * @param pwd
  * @param callback(status) 0-密码错误；1-登录成功；2-用户名不存在
  */
@@ -52,5 +51,21 @@ exports.validatePwd = function (mark, pwd, callback) {
                 callback(2,null);
             }
         });
+    });
+};
+
+exports.checkEmail = function(email,callback) {
+    user.findOneByEmail(email,function(found,emailUser) {
+        callback(found);
+    });
+};
+
+exports.addUser = function(user,callback) {
+    user.addUser(user,function(added) {
+        if(added) {
+            callback(true,user);
+        } else {
+            callback(false,null);
+        }
     });
 };
