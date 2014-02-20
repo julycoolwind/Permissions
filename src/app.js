@@ -43,7 +43,7 @@ app.get("/register",userControl.register);
 app.post("/verifyEmail",userControl.verifyEmail);
 app.post("/signIn",userControl.signIn);
 app.get("/signOut",userControl.signOut);
-//app.post("/signUp",userControl.signUp)
+app.post("/signUp",userControl.signUp);
 
 http.createServer(app).listen(app.get("port"), function(){
   logger.debug("Express server listening on port " + app.get("port"));

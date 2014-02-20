@@ -8,19 +8,19 @@ var user = require("../DBAccess/user");
  * @param callback(status) 0-强制密码登录；1-登录成功；2-其他设备cookies登录；3-其他设备密码登录
  */
 exports.validateCookies = function (nickname, identifier, token, callback) {
-    user.findOneByNickname(nickname, function (found, user) {
+    user.findOneByNickname(nickname, function (err,found, user) {
         if (found && user) {
             if (!user.identifier) {
-                callback(0,null);
+                callback(err,0,null);
             } else if (user.identifier == identifier && user.token == token) {
-                callback(1,user);
+                callback(err,1,user);
             } else if (user.identifier == identifier) {
-                callback(2,null);
+                callback(err,2,null);
             } else {
-                callback(3,null);
+                callback(err,3,null);
             }
         } else {
-            callback(0);
+            callback(err,0,null);
         }
     });
 };
@@ -33,39 +33,39 @@ exports.validateCookies = function (nickname, identifier, token, callback) {
  * @param callback(status) 0-密码错误；1-登录成功；2-用户名不存在
  */
 exports.validatePwd = function (mark, pwd, callback) {
-    user.findOneByEmail(mark, function (emailFound, emailUser) {
-        user.findOneByNickname(mark, function (nicknameFound, nicknameUser) {
+    user.findOneByEmail(mark, function (err,emailFound, emailUser) {
+        user.findOneByNickname(mark, function (err,nicknameFound, nicknameUser) {
             if (emailFound) {
                 if(pwd == emailUser.pwd) {
-                    callback(1,emailUser);
+                    callback(err,1,emailUser);
                 } else {
-                    callback(0,null);
+                    callback(err,0,null);
                 }
             } else if (nicknameFound) {
                 if(pwd == nicknameUser.pwd) {
-                    callback(1,nicknameUser);
+                    callback(err,1,nicknameUser);
                 } else {
-                    callback(0,null);
+                    callback(err,0,null);
                 }
             } else {
-                callback(2,null);
+                callback(err,2,null);
             }
         });
     });
 };
 
 exports.checkEmail = function(email,callback) {
-    user.findOneByEmail(email,function(found,emailUser) {
-        callback(found);
+    user.findOneByEmail(email,function(err,found) {
+        callback(err,found);
     });
 };
 
-exports.addUser = function(user,callback) {
-    user.addUser(user,function(added) {
+exports.newUser = function(u,callback) {
+    user.add(u,function(err,added) {
         if(added) {
-            callback(true,user);
+            callback(err,true,u);
         } else {
-            callback(false,null);
+            callback(err,false,null);
         }
     });
 };

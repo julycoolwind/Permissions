@@ -9,8 +9,8 @@ var user = require("../src/DBAccess/user");
 describe("未登录请求", function () {
     before(function (done) {
         var signInUser = {"email": "signIn@admin.com", "nickname": "signInUser", "pwd": "12345", "identifier": "1", "token": "A"};
-        user.add(signInUser, function (added) {
-            should(added).equal(true);
+        user.add(signInUser, function (err,added) {
+            added.should.equal(true);
             done();
         });
     });
@@ -62,11 +62,11 @@ describe("未登录请求", function () {
                 });
         });
         describe("登录成功后", function () {
-            describe("下次自动登录",function() {
+            describe("session中保存了对象",function() {
                 var cookies = null;
                 before(function (done) {
                     request(app).post("/signIn")
-                        .send({"signInMark": "signInUser", "pwd": "12345", "saveStates": false})
+                        .send({"signInMark": "signInUser", "pwd": "12345", "saveStates": true})
                         .end(function (err, res) {
                             if (err) {
                                 throw err;
@@ -78,7 +78,7 @@ describe("未登录请求", function () {
                         });
                 });
                 it("验证登录状态", function (done) {
-                    request(app).get("/")
+                    request(app).get("/index")
                         .set("cookie",cookies)
                         .end(function (err, res) {
                         if (err) {
@@ -92,6 +92,12 @@ describe("未登录请求", function () {
                 });
             });
         });
-    })
+    });
+    after(function(done) {
+        user.removeAll(function(err,removed) {
+            removed.should.equal(true);
+            done();
+        });
+    });
 });
 

@@ -6,11 +6,11 @@ describe("DBAccess.user", function () {
         var userForUpdate = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
         var userForRemove = {"email":"remove@admin.com","nickname":"userForRemove","pwd":"12345"};
         var userForFind = {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"};
-        user.add(userForFind,function(findAdded) {
+        user.add(userForFind,function(err,findAdded) {
             should(findAdded).equal(true);
-            user.add(userForRemove,function(removeAdded) {
+            user.add(userForRemove,function(err,removeAdded) {
                 should(removeAdded).equal(true);
-                user.add(userForUpdate,function(updateAdded) {
+                user.add(userForUpdate,function(err,updateAdded) {
                     should(updateAdded).equal(true);
                     done();
                 });
@@ -25,7 +25,7 @@ describe("DBAccess.user", function () {
                 "nickname": "userForAdd",
                 "pwd": "12345"
             };
-            user.add(u, function (added) {
+            user.add(u, function (err,added) {
                 should(added).equal(true);
                 done();
             });
@@ -40,7 +40,7 @@ describe("DBAccess.user", function () {
                 "identifier":"1",
                 "token":"A"
             };
-            user.update(u,function(updated) {
+            user.update(u,function(err,updated) {
                 should(updated).equal(true);
                 done();
             });
@@ -49,7 +49,7 @@ describe("DBAccess.user", function () {
     describe("removeOne()", function () {
         it("需要根据传入的email删除掉User", function (done) {
             var email = "remove@admin.com";
-            user.removeOne(email,function(removed) {
+            user.removeOne(email,function(err,removed) {
                 should(removed).equal(true);
                 done();
             })
@@ -58,7 +58,7 @@ describe("DBAccess.user", function () {
     describe("findOneByEmail()", function () {
         it("需要根据传入的Email查出User", function (done) {
             var email = "find@admin.com";
-            user.findOneByEmail(email,function(found,user){
+            user.findOneByEmail(email,function(err,found,user){
                 should(found).equal(true);
                 should(user).be.ok;
                 should(user).have.property('email',email);
@@ -69,7 +69,7 @@ describe("DBAccess.user", function () {
     describe("findOneByNickname()", function () {
         it("需要根据传入的nickname查出User", function (done) {
             var nickname = "userForFind";
-            user.findOneByNickname(nickname,function(found,user) {
+            user.findOneByNickname(nickname,function(err,found,user) {
                 should(found).equal(true);
                 should(user).be.ok;
                 should(user).have.property('nickname',nickname);
@@ -79,7 +79,7 @@ describe("DBAccess.user", function () {
     });
     describe("removeAll",function() {
         it("需要清空数据库中所有User", function(done) {
-            user.removeAll(function(removed) {
+            user.removeAll(function(err,removed) {
                 should(removed).equal(true);
                 done();
             })
@@ -87,7 +87,7 @@ describe("DBAccess.user", function () {
     });
 
     after(function(done) {
-        user.removeAll(function(removed) {
+        user.removeAll(function(err,removed) {
             should(removed).equal(true);
             done();
         });
