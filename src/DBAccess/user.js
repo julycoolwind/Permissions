@@ -2,8 +2,8 @@ var db = require("./connector").connect();
 var logger = require("../util/logger").logger("DBAccess.user");
 
 exports.add = function(user,callback) {
-    db.user.insert(user,function(err,saved) {
-        if(err || !saved) {
+    db.user.insert(user,function(err,added) {
+        if(err || !added) {
             callback("插入新用户失败",false);
             logger.error("插入新用户失败.位置:DBAccess/user.add;错误信息:"+err);
         } else {

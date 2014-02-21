@@ -54,12 +54,22 @@ exports.validatePwd = function (mark, pwd, callback) {
     });
 };
 
+/**
+ * 注册界面验证email是否使用过
+ * @param email
+ * @param callback
+ */
 exports.checkEmail = function(email,callback) {
     user.findOneByEmail(email,function(err,found) {
         callback(err,found);
     });
 };
 
+/**
+ * 注册一个新用户
+ * @param u
+ * @param callback
+ */
 exports.newUser = function(u,callback) {
     user.add(u,function(err,added) {
         if(added) {

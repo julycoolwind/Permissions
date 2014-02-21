@@ -1,5 +1,6 @@
 var should = require("should");
 var user = require("../src/DBAccess/user");
+var module = require("../src/DBAccess/module");
 
 describe("DBAccess.user", function () {
     before(function(done) {
@@ -139,4 +140,80 @@ describe("DBAccess.organization",function() {
 //TODO
 describe("DBAccess.post",function() {
 
+});
+
+//TODO
+describe("DBAccess.permission",function() {
+
+});
+
+describe("DBAccess.module",function() {
+    var addModule = {"name":"addModule","url":"/addModule"};
+    var updateModule = {"name":"updateModule","url":"/updateModule"};
+    var updatedModule = {"name":"updateModule","features":[{"name":"fu1","url":"/fu1"},{"name":"fu2","url":"/fu2"}]};
+    var removeModule = {"name":"removeModule","url":"/removeModule"};
+    var tempModule1 = {"name":"module1","features":[{"name":"f1","url":"/f1"},{"name":"f2","url":"/f2"}]};
+    var tempModule2 = {"name":"module2","features":[{"name":"f21","url":"/f21"},{"name":"f22","url":"/f22"}]};
+    var findModule = {"name":"findModule","features":[{"name":"ff1","url":"/ff1"},{"name":"ff2","url":"/ff2"}]};
+
+    before(function(done) {
+        module.add(updateModule,function() {
+            module.add(removeModule,function() {
+                module.add(tempModule1,function() {
+                    module.add(tempModule2,function() {
+                        module.add(findModule,function() {
+                            done();
+                        })
+                    });
+                });
+            });
+        })
+    });
+    describe("插入新module",function() {
+        it("插入一个新module并且没err",function(done) {
+            module.add(addModule,function(err,added) {
+                added.should.equal(true);
+                err.should.be.not.ok;
+                done();
+            });
+        });
+    });
+    describe("更新module",function() {
+        it("更新module，增加features",function(done) {
+            module.update(updatedModule,function(err,updated) {
+                updated.should.equal(true);
+                err.should.be.not.ok;
+                done();
+            });
+        });
+    });
+    describe("删除module",function() {
+        it("删除指定name 的 module",function(done) {
+            module.removeOne("removeModule",function(err,removed) {
+                removed.should.equal(true);
+                err.should.be.not.ok;
+                done();
+            });
+        });
+    });
+    describe("获取module列表",function() {
+        it("获取所有module",function(done) {
+            module.findAll(function(err,found,modules) {
+                found.should.equal(true);
+                err.should.be.not.ok;
+                modules.length.should.be.greaterThan(0);
+                done();
+            });
+        });
+    });
+    describe("获取单个module",function() {
+        it("通过name获取module",function(done) {
+            module.findOneByName("findModule",function(err,found,m) {
+                found.should.equal(true);
+                err.should.be.not.ok;
+                m.features.length.should.be.equal(2);
+                done();
+            });
+        });
+    });
 });

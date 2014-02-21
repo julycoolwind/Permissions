@@ -21,7 +21,6 @@ exports.signIn = function (req, res) {
                 res.cookie("token", user.token, {"maxAge": maxAge});
             }
             req.session.user = user;
-            console.debug("save session");
         }
         res.json({"status":status,"err":err});
     });
