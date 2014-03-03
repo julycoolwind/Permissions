@@ -1,6 +1,7 @@
 var should = require("should");
 var user = require("../src/DBAccess/user");
 var module = require("../src/DBAccess/module");
+var invitcode = require("../src/DBAccess/invitcode");
 
 describe("DBAccess.user", function () {
     before(function(done) {
@@ -97,8 +98,31 @@ describe("DBAccess.user", function () {
 
 describe("DBAccess.invitationCode",function () {
     describe("add",function() {
-        it("创建新的邀请码",function() {
-
+        it("创建新的邀请码",function(done) {
+            var inv = {
+              code:"aninvitcode"
+            };
+            var u = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
+            invitcode.add(inv,u,function(err,added){
+                should(added).equal(true);
+                done();
+            });
+        });
+        it("添加已经存在的邀请码",function(done){
+            var inv = {
+                code:"aninvitcode"
+            };
+            var u = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
+            invitcode.add(inv,u,function(err,added){
+                should(added).equal(true);
+                should(err).equal("")
+                done();
+            });
+            invitcode.add(inv,u,function(err,added){
+                should(added).equal(false);
+                should(err).equal("邀请码已经存在，不能重复添加。");
+                done();
+            });
         });
     });
     describe("update",function() {
