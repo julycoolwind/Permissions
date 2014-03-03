@@ -97,12 +97,20 @@ describe("DBAccess.user", function () {
 });
 
 describe("DBAccess.invitationCode",function () {
+    before(function(done) {
+        var userForUpdate = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
+        var userForRemove = {"email":"remove@admin.com","nickname":"userForRemove","pwd":"12345"};
+        var userForFind = {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"};
+        user.add(userForFind,function(err,findAdded) {
+            should(findAdded).equal(true);
+        });
+    });
     describe("add",function() {
         it("创建新的邀请码",function(done) {
             var inv = {
               code:"aninvitcode"
             };
-            var u = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
+            var u = {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"};
             invitcode.add(inv,u,function(err,added){
                 should(added).equal(true);
                 done();
@@ -112,7 +120,7 @@ describe("DBAccess.invitationCode",function () {
             var inv = {
                 code:"aninvitcode"
             };
-            var u = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
+            var u = {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"};
             invitcode.add(inv,u,function(err,added){
                 should(added).equal(true);
                 should(err).equal("")
@@ -133,6 +141,13 @@ describe("DBAccess.invitationCode",function () {
     describe("findOneByCode",function() {
         it("通过code查询邀请码状态",function() {
 
+        });
+    });
+    after(function(done) {
+        user.removeAll(function(err,removed) {
+            //TODO考虑删除user时，邀请码由谁负责删除
+            should(removed).equal(true);
+            done();
         });
     });
 });
