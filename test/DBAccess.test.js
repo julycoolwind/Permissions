@@ -3,20 +3,16 @@ var user = require("../src/DBAccess/user");
 var module = require("../src/DBAccess/module");
 
 describe("DBAccess.user", function () {
-    before(function(done) {
-        var userForUpdate = {"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"};
-        var userForRemove = {"email":"remove@admin.com","nickname":"userForRemove","pwd":"12345"};
-        var userForFind = {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"};
-        user.add(userForFind,function(err,findAdded) {
-            should(findAdded).equal(true);
-            user.add(userForRemove,function(err,removeAdded) {
-                should(removeAdded).equal(true);
-                user.add(userForUpdate,function(err,updateAdded) {
-                    should(updateAdded).equal(true);
-                    done();
-                });
+    before(function(done){
+        var userArray = [{"email":"update@admin.com","nickname":"userForUpdate","pwd":"12345"},
+         {"email":"remove@admin.com","nickname":"userForRemove","pwd":"12345"},
+         {"email":"find@admin.com","nickname":"userForFind","pwd":"12345"}];
+        userArray.forEach(function(auser){
+            user.add(auser,function(err,state){
+                should(state).equal(true);
             });
         });
+        done();
     });
 
     describe("add()", function () {
